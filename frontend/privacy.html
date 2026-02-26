@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- ============================================================
+      PRIVACY POLICY (NEUTRAL)
+      - This page is designed to be reusable for any service business.
+      - It includes a minimal SITE_CONFIG block so it can stand alone.
+    ============================================================ -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta
+      name="description"
+      content="Privacy policy for this service business website template."
+    />
+    <title>Privacy Policy • Service Business Starter</title>
+
+    <!-- Optional font (matches index) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script defer src="assets/js/main.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" />
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  </head>
+
+  <body>
+    <!-- ============================================================
+      SITE CONFIG (MINIMAL)
+      - Keep this in sync with index.html when you rebrand.
+      - If you prefer: we can centralize config later.
+    ============================================================ -->
+    <script>
+      window.SITE_CONFIG = {
+        businessName: "YOUR_BUSINESS_NAME",
+        brandMark: "SB",
+        phoneDisplay: "(555) 555-5555",
+        phoneE164: "+15555555555",
+        email: "hello@example.com",
+        primaryServiceArea: "Your Primary Service Area",
+        hoursText: "Hours: Mon–Sun • 8am–6pm",
+        serviceRadiusNote: "Approx. service radius: 30–50 miles",
+      };
+    </script>
+
+    <!-- ============================================================
+      HEADER / NAV (same as index for consistency)
+    ============================================================ -->
+    <div class="topbar" role="banner">
+      <div class="container topbar__inner">
+        <div class="topbar__badge">
+          <span class="dot"></span>
+          <span id="topbarBadgeText">Locally Owned & Operated</span>
+        </div>
+
+        <div class="topbar__actions">
+          <a class="topbar__link" href="index.html#quote">Get a Quote</a>
+          <a class="topbar__link" href="index.html#areas"
+            >Serving: <span id="topbarAreaText">Your Service Area</span></a
+          >
+        </div>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="index.html" aria-label="Business home">
+          <div class="brand__mark" aria-hidden="true" id="brandMark">SB</div>
+          <div class="brand__text">
+            <div class="brand__name" id="brandName">YOUR_BUSINESS_NAME</div>
+            <div class="brand__sub" id="brandSub">Service Company</div>
+          </div>
+        </a>
+
+        <nav id="site-nav" class="nav" aria-label="Primary">
+          <a class="nav__link" href="index.html#services">Services</a>
+          <a class="nav__link" href="index.html#how">How it works</a>
+          <a class="nav__link" href="index.html#areas">Areas</a>
+          <a class="nav__link" href="index.html#about">About</a>
+          <a class="btn btn--primary" href="index.html#quote">Free Quote</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ============================================================
+      CONTENT
+    ============================================================ -->
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="section__head">
+            <h1 class="section__title">Privacy Policy</h1>
+            <p class="section__sub">
+              This policy explains what information we collect, how we use it, and
+              your choices.
+            </p>
+          </div>
+
+          <div class="card">
+            <p class="card__text">
+              <strong id="policyBusinessName">YOUR_BUSINESS_NAME</strong> (“we,” “us,”
+              “our”) values your privacy. This website is intended to provide
+              information about our services and allow you to request a quote.
+            </p>
+
+            <hr style="border:0;border-top:1px solid rgba(255,255,255,0.10);margin:18px 0;" />
+
+            <h2 class="card__title">Information we collect</h2>
+            <p class="card__text">
+              When you submit our quote form, we may collect information such as:
+            </p>
+            <ul class="checklist">
+              <li>Your name</li>
+              <li>Email address</li>
+              <li>Phone number</li>
+              <li>City / town (optional)</li>
+              <li>Job details you provide</li>
+              <li>Photos you upload (optional)</li>
+            </ul>
+
+            <h2 class="card__title" style="margin-top:18px;">How we use your information</h2>
+            <p class="card__text">
+              We use the information you provide to:
+            </p>
+            <ul class="checklist">
+              <li>Respond to quote requests</li>
+              <li>Schedule or coordinate services</li>
+              <li>Improve our customer support and service quality</li>
+              <li>Prevent spam or abuse of the form</li>
+            </ul>
+
+            <h2 class="card__title" style="margin-top:18px;">Sharing</h2>
+            <p class="card__text">
+              We do not sell your personal information. We may share information
+              only as needed to operate the website and respond to your request
+              (for example, using a form provider or email service).
+            </p>
+
+            <h2 class="card__title" style="margin-top:18px;">Data retention</h2>
+            <p class="card__text">
+              We keep messages and attachments for as long as needed to respond to
+              your request and for basic record-keeping. You may request deletion
+              of your information by contacting us.
+            </p>
+
+            <h2 class="card__title" style="margin-top:18px;">Your choices</h2>
+            <p class="card__text">
+              You can choose not to submit the form. If you do submit it, you may
+              request a copy, correction, or deletion of your information.
+            </p>
+
+            <h2 class="card__title" style="margin-top:18px;">Contact</h2>
+            <p class="card__text">
+              If you have questions about this policy, contact us at:
+              <a id="privacyEmailLink" class="footer__link" href="mailto:hello@example.com"
+                ><span id="privacyEmailText">hello@example.com</span></a
+              >
+            </p>
+
+            <p class="card__text" style="margin-top:18px;color:rgba(255,255,255,0.55);">
+              Last updated: <span id="policyUpdated">2026-02-26</span>
+            </p>
+          </div>
+
+          <div style="margin-top:16px;">
+            <a class="btn btn--ghost" href="index.html">← Back to Home</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+      FOOTER (same style as index)
+    ============================================================ -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__col footer__left">
+          <div class="footer__brand" id="footerBrand">YOUR_BUSINESS_NAME</div>
+          <div class="footer__sub" id="footerSub">
+            Locally Owned & Operated • Your City, ST
+          </div>
+          <div class="footer__meta" id="footerMeta">
+            <span id="footerArea">Your Primary Service Area</span> •
+            <span id="footerRadius">Approx. service radius: 30–50 miles</span>
+          </div>
+        </div>
+
+        <div class="footer__col footer__center">
+          <a class="footer__link" href="privacy.html">Privacy Policy</a>
+        </div>
+
+        <div class="footer__col footer__right">
+          <a class="footer__phone" id="footerPhoneLink" href="tel:+15555555555"
+            ><span id="footerPhoneText">(555) 555-5555</span></a
+          >
+          <a class="footer__email" id="footerEmailLink" href="mailto:hello@example.com"
+            ><span id="footerEmailText">hello@example.com</span></a
+          >
+          <div class="footer__hours" id="footerHours">Hours: Mon–Sun • 8am–6pm</div>
+        </div>
+      </div>
+
+      <div class="container footer__bottom">
+        <small>© <span id="year">2026</span> YOUR_BUSINESS_NAME. All rights reserved.</small>
+      </div>
+    </footer>
+
+    <!-- Small inline script to fill privacy-only placeholders -->
+    <script>
+      (function () {
+        const cfg = window.SITE_CONFIG || {};
+        const setText = (id, v, f) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = (v ?? f ?? "").toString();
+        };
+
+        setText("policyBusinessName", cfg.businessName, "YOUR_BUSINESS_NAME");
+
+        const emailLink = document.getElementById("privacyEmailLink");
+        const emailText = document.getElementById("privacyEmailText");
+        if (cfg.email) {
+          if (emailLink) emailLink.href = "mailto:" + cfg.email;
+          if (emailText) emailText.textContent = cfg.email;
+        }
+      })();
+    </script>
+  </body>
+</html>
