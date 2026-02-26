@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- ============================================================
+      META / SEO
+      - Keep this neutral so the repo can be reused for any client.
+      - Rebrand values are injected via SITE_CONFIG (see <body>).
+    ============================================================ -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A modern, responsive service business template with a quote form and automation-ready backend hooks."
+    />
+    <title>Service Business Starter Template</title>
+
+    <!-- Optional external font (remove if you want zero external dependencies) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- ============================================================
+      FAVICONS
+      - Replace these files inside: /frontend/assets/images/
+    ============================================================ -->
+    <link rel="icon" href="assets/images/favicon.ico" />
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/images/favicon.png" />
+
+    <!-- ============================================================
+      OPEN GRAPH / SOCIAL SHARE
+      - Keep the OG image local + neutral.
+      - When deployed, you can swap these values for the client.
+    ============================================================ -->
+    <meta property="og:site_name" content="Service Business Starter Template" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Service Business Starter Template" />
+    <meta
+      property="og:description"
+      content="A clean, modern template for local service businesses. Includes quote form + automation hooks."
+    />
+    <meta property="og:image" content="assets/images/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Service Business Starter Template" />
+    <meta
+      name="twitter:description"
+      content="A clean, modern template for local service businesses."
+    />
+    <meta name="twitter:image" content="assets/images/og-image.jpg" />
+
+    <!-- Main JS (deferred) -->
+    <script defer src="assets/js/main.js"></script>
+
+    <!-- ============================================================
+      STRUCTURED DATA (NEUTRAL)
+      - Keep generic. Client-specific schema can be added later.
+    ============================================================ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "YOUR_BUSINESS_NAME",
+        "url": "YOUR_WEBSITE_URL",
+        "priceRange": "$$"
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- ============================================================
+      SITE CONFIG (REBRAND IN 60 SECONDS)
+      - main.js reads these values to populate phone/email/labels.
+      - Replace placeholders with real business details when cloning.
+    ============================================================ -->
+    <script>
+      window.SITE_CONFIG = {
+        businessName: "YOUR_BUSINESS_NAME",
+        brandMark: "SB", // 1–2 letters shown in the logo mark
+        taglineShort: "Fast • Friendly • Reliable",
+        taglineLong: "Professional service you can trust.",
+
+        phoneDisplay: "(555) 555-5555",
+        phoneE164: "+15555555555",
+        email: "hello@example.com",
+
+        primaryServiceArea: "Your Primary Service Area",
+        serviceRadiusNote: "Approx. service radius: 30–50 miles",
+
+        // Form endpoint:
+        // - For now you can use Formspree
+        // - Later we will swap this to an n8n webhook URL
+        formEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
+
+        // Optional: short urgency note shown in hero
+        urgencyNote: "Limited weekend availability — reserve early.",
+
+        // Optional: hours shown in footer
+        hoursText: "Hours: Mon–Sun • 8am–6pm"
+      };
+    </script>
+
+    <!-- ============================================================
+      MOBILE CALL BAR
+      - Appears on small screens for instant calling.
+      - JS can update the tel: link from SITE_CONFIG.
+    ============================================================ -->
+    <div class="mobile-callbar">
+      <a id="mobileCallLink" href="tel:+15555555555">📞 Call Now</a>
+    </div>
+
+    <!-- ============================================================
+      TOP BAR
+      - Small trust badge + quick actions.
+    ============================================================ -->
+    <div class="topbar" role="banner">
+      <div class="container topbar__inner">
+        <div class="topbar__badge">
+          <span class="dot"></span>
+          <span id="topbarBadgeText">Locally Owned & Operated</span>
+        </div>
+
+        <div class="topbar__actions">
+          <a class="topbar__link" href="#quote">Get a Quote</a>
+          <a class="topbar__link" href="#areas"
+            >Serving: <span id="topbarAreaText">Your Service Area</span></a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+      HEADER / NAV
+      - Desktop nav + mobile toggle
+    ============================================================ -->
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="#top" aria-label="Business home">
+          <div class="brand__mark" aria-hidden="true" id="brandMark">SB</div>
+          <div class="brand__text">
+            <div class="brand__name" id="brandName">YOUR_BUSINESS_NAME</div>
+            <div class="brand__sub" id="brandSub">Service Company</div>
+          </div>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+
+        <nav id="site-nav" class="nav" aria-label="Primary">
+          <a class="nav__link" href="#services">Services</a>
+          <a class="nav__link" href="#how">How it works</a>
+          <a class="nav__link" href="#areas">Areas</a>
+          <a class="nav__link" href="#about">About</a>
+          <a class="btn btn--primary" href="#quote">Free Quote</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ============================================================
+        HERO
+        - Value proposition + CTA
+        - Image is a placeholder you can replace with your own.
+      ============================================================ -->
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <div class="hero-phone">
+              <a id="heroPhoneLink" href="tel:+15555555555" class="hero-phone__link">
+                📞 Call or Text <span id="heroPhoneText">(555) 555-5555</span>
+              </a>
+              <p class="hero-urgency" id="heroUrgency">
+                Limited weekend availability — reserve early.
+              </p>
+            </div>
+
+            <p class="kicker" id="heroKicker">Fast • Friendly • Reliable</p>
+
+            <h1 class="hero__title">
+              Professional help when you need it.
+              <span class="hero__title-accent">Get your space back.</span>
+            </h1>
+
+            <p class="hero__lead">
+              A modern service template for local businesses — cleanouts, hauling,
+              repairs, landscaping, detailing, and more. Same-day options when available.
+            </p>
+
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#quote">Get My Free Quote</a>
+              <a class="btn btn--ghost" href="#services">See Services</a>
+            </div>
+          </div>
+
+          <div class="hero__media">
+            <div class="card card--media">
+              <div class="media-frame">
+                <img
+                  id="heroMascot"
+                  src="assets/images/hero-illustration.png"
+                  alt="Service illustration"
+                  loading="eager"
+                />
+              </div>
+
+              <div class="trust-row" aria-label="Trust indicators">
+                <div class="trust-pill">Local Service</div>
+                <div class="trust-pill">Fair Pricing</div>
+                <div class="trust-pill">Respectful Work</div>
+              </div>
+
+              <div class="media-caption">
+                <div class="media-caption__title">Simple scheduling, no drama.</div>
+                <div class="media-caption__sub">
+                  Tap “Free Quote” and we’ll take it from there.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+        SERVICES
+        - Three-card layout (keep this structure; easy to swap content)
+      ============================================================ -->
+      <section id="services" class="section">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="section__title">Services</h2>
+            <p class="section__sub">
+              From small jobs to full cleanouts — we handle the heavy lifting and leave
+              the area tidy.
+            </p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="card service">
+              <img
+                class="service__img"
+                src="assets/images/service-1.png"
+                alt="Service illustration 1"
+                loading="lazy"
+              />
+              <h3 class="card__title">Service Category One</h3>
+              <p class="card__text">
+                Example: item removal, hauling, small demo, or general labor.
+              </p>
+            </article>
+
+            <article class="card service">
+              <img
+                class="service__img"
+                src="assets/images/service-2.png"
+                alt="Service illustration 2"
+                loading="lazy"
+              />
+              <h3 class="card__title">Service Category Two</h3>
+              <p class="card__text">
+                Example: cleanouts, yard debris, job site cleanup, or move-out help.
+              </p>
+            </article>
+
+            <article class="card service">
+              <img
+                class="service__img"
+                src="assets/images/service-3.png"
+                alt="Service illustration 3"
+                loading="lazy"
+              />
+              <h3 class="card__title">Service Category Three</h3>
+              <p class="card__text">
+                Example: loading, deliveries, heavy items, or specialty assistance.
+              </p>
+            </article>
+          </div>
+
+          <div class="note">
+            <strong>Heads up:</strong> Some item types or job conditions may require
+            special handling or fees. We’ll clarify during the quote.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+        HOW IT WORKS
+        - Simple 3-step flow
+      ============================================================ -->
+      <section id="how" class="section section--alt">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="section__title">How it Works</h2>
+            <p class="section__sub">Simple, fast, and transparent — start to finish.</p>
+          </div>
+
+          <ol class="steps">
+            <li class="step card">
+              <div class="step__num">1</div>
+              <h3 class="card__title">Send details</h3>
+              <p class="card__text">
+                Tell us what you need. Photos help for accurate pricing.
+              </p>
+            </li>
+            <li class="step card">
+              <div class="step__num">2</div>
+              <h3 class="card__title">Get your quote</h3>
+              <p class="card__text">
+                Upfront estimate based on scope, access, and timing.
+              </p>
+            </li>
+            <li class="step card">
+              <div class="step__num">3</div>
+              <h3 class="card__title">We get it done</h3>
+              <p class="card__text">
+                Professional work + quick cleanup so it looks great.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============================================================
+        AREAS SERVED
+        - Neutral by default. Client can swap the pill list.
+      ============================================================ -->
+      <section id="areas" class="section">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="section__title">Areas Served</h2>
+            <p class="section__sub">
+              Primary operating area:
+              <strong id="areasPrimaryText">Your Primary Service Area</strong>.
+            </p>
+          </div>
+
+          <div class="card areas">
+            <div class="areas__left">
+              <h3 class="card__title">Common service towns</h3>
+              <p class="card__text">
+                We regularly serve nearby towns and surrounding communities. If you’re
+                unsure, ask — if it’s within range, we’ll make it work.
+              </p>
+
+              <ul class="pill-list" aria-label="Example towns">
+                <li class="pill">Town One</li>
+                <li class="pill">Town Two</li>
+                <li class="pill">Town Three</li>
+                <li class="pill">Town Four</li>
+                <li class="pill">Town Five</li>
+                <li class="pill">Town Six</li>
+                <li class="pill">Town Seven</li>
+                <li class="pill">Town Eight</li>
+                <li class="pill">Town Nine</li>
+              </ul>
+            </div>
+
+            <div class="areas__right">
+              <img
+                src="assets/images/areas-illustration.png"
+                alt="Service area illustration"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+        ABOUT
+        - Neutral owner block. Replace name/photo/badges per client.
+      ============================================================ -->
+      <section id="about" class="section section--alt">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="section__title">About the Owner</h2>
+            <p class="section__sub">Local service you can trust.</p>
+          </div>
+
+          <div class="grid grid--2">
+            <div class="card">
+              <h3 class="card__title owner-title">
+                <span id="ownerName">Owner Name</span>
+                <img
+                  class="owner-avatar"
+                  src="assets/images/owner-avatar.png"
+                  alt="Owner portrait"
+                />
+              </h3>
+
+              <p class="card__text">
+                This business is built on simple values: show up on time, work hard,
+                price fairly, and treat your property with respect.
+              </p>
+
+              <div class="badge-row">
+                <span class="badge">Locally Owned</span>
+                <span class="badge">Responsive</span>
+                <span class="badge">Respectful Work</span>
+              </div>
+            </div>
+
+            <div class="card card--media">
+              <div class="media-frame">
+                <img
+                  src="assets/images/about-illustration.png"
+                  alt="About illustration"
+                  loading="lazy"
+                />
+              </div>
+              <div class="media-caption">
+                <div class="media-caption__title">Reliable service. Clear communication.</div>
+                <div class="media-caption__sub">We keep it simple and professional.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+        QUOTE FORM
+        - Keeps your current field names and hidden parsed fields so
+          your existing JS parsing logic still applies.
+        - formEndpoint is set via SITE_CONFIG for easy swapping later.
+      ============================================================ -->
+      <section id="quote" class="section">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="section__title">Get Your Free Quote</h2>
+            <p class="section__sub">
+              Tell us what you need and we’ll reply with an estimate as soon as possible.
+            </p>
+          </div>
+
+          <div class="grid grid--2">
+            <form
+              class="card form"
+              id="quoteForm"
+              action="https://formspree.io/f/YOUR_FORM_ID"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              <!-- Subject (neutral) -->
+              <input
+                type="hidden"
+                name="_subject"
+                value="New Quote Request — Service Business Starter"
+              />
+
+              <!-- Honeypot spam trap -->
+              <input
+                type="text"
+                name="_gotcha"
+                class="sr-only"
+                tabindex="-1"
+                autocomplete="off"
+              />
+
+              <!-- Visible fields -->
+              <label class="field">
+                <span class="field__label">Name</span>
+                <input
+                  class="field__input"
+                  type="text"
+                  name="full_name"
+                  placeholder="Your name"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="field__label">Phone</span>
+                <input
+                  class="field__input"
+                  type="tel"
+                  name="phone"
+                  id="phoneInput"
+                  placeholder="(555) 555-5555"
+                  autocomplete="tel"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="field__label">Email</span>
+                <input
+                  class="field__input"
+                  type="email"
+                  name="email"
+                  placeholder="you@email.com"
+                  autocomplete="email"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="field__label">City / Town</span>
+                <input
+                  class="field__input"
+                  type="text"
+                  name="location"
+                  placeholder="City, State"
+                  autocomplete="address-level2"
+                />
+              </label>
+
+              <label class="field">
+                <span class="field__label">Job details</span>
+                <textarea
+                  class="field__input field__input--textarea"
+                  name="details"
+                  rows="5"
+                  placeholder="What do you need done? Quantity/scope? Access notes? Preferred timeframe?"
+                  required
+                ></textarea>
+              </label>
+
+              <label class="field">
+                <span class="field__label">Add photos (optional)</span>
+                <input
+                  class="field__input"
+                  type="file"
+                  name="attachments"
+                  accept="image/*"
+                  multiple
+                />
+                <small class="fineprint">Up to 10 images. Max 25MB each.</small>
+              </label>
+
+              <button class="btn btn--primary" type="submit">Get My Free Quote</button>
+
+              <div
+                id="quoteSuccess"
+                class="alert alert--success"
+                role="status"
+                aria-live="polite"
+                hidden
+              >
+                <div class="alert__icon">✓</div>
+                <div class="alert__body">
+                  <div class="alert__title">Sent! We’ll reach out shortly.</div>
+                  <div class="alert__msg">
+                    Prefer faster? Call/text photos for a quick estimate.
+                  </div>
+                </div>
+              </div>
+
+              <div
+                id="quoteError"
+                class="alert alert--error"
+                role="status"
+                aria-live="polite"
+                hidden
+              >
+                <div class="alert__icon">!</div>
+                <div class="alert__body">
+                  <div class="alert__title">Something went wrong.</div>
+                  <div class="alert__msg" id="quoteErrorMsg">
+                    Please call/text (555) 555-5555 and we’ll help you fast.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hidden parsed fields (kept for your existing JS parsing) -->
+              <input type="hidden" name="first_name" id="firstName" />
+              <input type="hidden" name="last_name" id="lastName" />
+              <input type="hidden" name="city" id="cityField" />
+              <input type="hidden" name="state" id="stateField" />
+              <input type="hidden" name="contact" id="contactTag" />
+              <input type="hidden" name="message" id="compiledMessage" />
+            </form>
+
+            <div class="card">
+              <h3 class="card__title">To get the most accurate quote, tell us:</h3>
+              <ul class="checklist">
+                <li>Item types / job type</li>
+                <li>Approximate quantity / scope</li>
+                <li>Location access (stairs, tight hallway, curb pickup)</li>
+                <li>Preferred timeframe (today, this week, weekend)</li>
+              </ul>
+
+              <div class="cta-box">
+                <div class="cta-box__title">Want instant pricing?</div>
+                <p class="cta-box__text">
+                  Text photos and we’ll respond with an estimate.
+                </p>
+                <a class="btn btn--ghost" href="#top">Back to top</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+      FOOTER
+      - Neutral placeholders (JS can fill from SITE_CONFIG)
+    ============================================================ -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__col footer__left">
+          <div class="footer__brand" id="footerBrand">YOUR_BUSINESS_NAME</div>
+          <div class="footer__sub" id="footerSub">
+            Locally Owned & Operated • Your City, ST
+          </div>
+          <div class="footer__meta" id="footerMeta">
+            <span id="footerArea">Your Primary Service Area</span> •
+            <span id="footerRadius">Approx. service radius: 30–50 miles</span>
+          </div>
+        </div>
+
+        <div class="footer__col footer__center">
+          <a class="footer__link" href="privacy.html">Privacy Policy</a>
+        </div>
+
+        <div class="footer__col footer__right">
+          <a class="footer__phone" id="footerPhoneLink" href="tel:+15555555555"
+            ><span id="footerPhoneText">(555) 555-5555</span></a
+          >
+          <a class="footer__email" id="footerEmailLink" href="mailto:hello@example.com"
+            ><span id="footerEmailText">hello@example.com</span></a
+          >
+          <div class="footer__hours" id="footerHours">Hours: Mon–Sun • 8am–6pm</div>
+        </div>
+      </div>
+
+      <div class="container footer__bottom">
+        <small>© <span id="year">2026</span> YOUR_BUSINESS_NAME. All rights reserved.</small>
+      </div>
+    </footer>
+  </body>
+</html>
