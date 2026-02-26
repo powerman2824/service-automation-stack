@@ -268,16 +268,66 @@
 
     /**
      * Update hidden fields so the payload is automation-friendly.
+     *
+     * These hidden fields allow:
+     * - Clean parsing in external systems
+     * - Easier database insertion later
+     * - Human-readable emails (compiledMessage)
+     * - Machine-readable JSON (payload_json)
      */
     const syncHiddenFields = (data) => {
+      // ---- Basic parsed fields (good for spreadsheets / CRM columns) ----
       if (firstNameEl) firstNameEl.value = data.first;
       if (lastNameEl) lastNameEl.value = data.last;
       if (cityEl) cityEl.value = data.city;
       if (stateEl) stateEl.value = data.state;
       if (contactTagEl) contactTagEl.value = data.contactTag;
 
+      // ---- Human readable summary (good for email notifications) ----
       if (compiledMessageEl) {
         compiledMessageEl.value = buildCompiledMessage(data);
+      }
+
+      /**
+       * ---- Structured automation payload (VERY IMPORTANT) ----
+       *
+       * This JSON blob is designed to be:
+       * - Easily parsed by n8n
+       * - Directly inserted into Google Sheets
+       * - Compatible with Airtable / HubSpot / etc.
+       * - Swappable to a real database later (SQLite/Postgres)
+       *
+       * If you ever replace Formspree with:
+       * - A custom API
+       * - A serverless function
+       * - A direct n8n webhook
+       *
+       * This structure can stay exactly the same.
+       */
+      const payloadJsonEl = document.getElementById("payloadJson");
+
+      if (payloadJsonEl) {
+        payloadJsonEl.value = JSON.stringify({
+          timestamp: new Date().toISOString(),
+
+          contactTag: data.contactTag,
+
+          fullName: data.fullName,
+          firstName: data.first,
+          lastName: data.last,
+
+          phone: data.phone,
+          email: data.email,
+
+          location: data.location,
+          city: data.city,
+          state: data.state,
+
+          details: data.details,
+
+          source: "github-pages",
+          page: window.location.href
+        });
       }
     };
 
