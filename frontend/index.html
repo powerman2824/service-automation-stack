@@ -453,7 +453,7 @@
             <form
               class="card form"
               id="quoteForm"
-              action="https://formspree.io/f/YOUR_FORM_ID"
+              action="https://formspree.io/f/mojnryvd"
               method="POST"
               enctype="multipart/form-data"
             >
@@ -585,6 +585,12 @@
               <input type="hidden" name="state" id="stateField" />
               <input type="hidden" name="contact" id="contactTag" />
               <input type="hidden" name="message" id="compiledMessage" />
+              <!--
+                payload_json:
+                - Machine-readable lead payload used by automations (n8n, Zapier, etc.)
+                - Safe to log into Google Sheets, Airtable, a database, or a file store.
+              -->
+              <input type="hidden" name="payload_json" id="payloadJson" />
             </form>
 
             <div class="card">
