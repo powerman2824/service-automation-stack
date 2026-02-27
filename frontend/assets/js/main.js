@@ -244,11 +244,16 @@
 
       // Contact tag: a stable-ish identifier for downstream automations
       // (you can change this to any convention later)
-      const contactTag = [
-        (first || "contact").toLowerCase(),
-        (last || "").toLowerCase().replace(/\s+/g, "-"),
-        city ? city.toLowerCase().replace(/\s+/g, "-") : "",
-      ]
+      const safeCity = city
+        ? city.trim().toLowerCase().replace(/\s+/g, "-")
+        : "";
+
+      const safeFirst = first
+        ? first.trim().charAt(0).toUpperCase() +
+          first.trim().slice(1).toLowerCase()
+        : "Contact";
+
+      const contactTag = [safeCity, safeFirst]
         .filter(Boolean)
         .join("_");
 
