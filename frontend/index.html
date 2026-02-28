@@ -97,10 +97,11 @@
         serviceRadiusNote: "Approx. service radius: 30–50 miles",
 
         // Form endpoint:
-        // - For now you can use Formspree
-        // - Later we will swap this to an n8n webhook URL
-        formEndpoint: "https://formspree.io/f/mojnryvd",
-        environment: "production",
+        // - formEndpoint: "https://formspree.io/f/YOUR_FORMSPREE_URL",
+        // - environment: "production",
+        formEndpoint: "__DEMO__",
+        environment: "demo",
+
         source: "github-pages",
 
         // Optional: short urgency note shown in hero
@@ -455,7 +456,7 @@
             <form
               class="card form"
               id="quoteForm"
-              action="https://formspree.io/f/YOUR_FORM_ID"
+              action="__DEMO__"
               method="POST"
               enctype="multipart/form-data"
             >

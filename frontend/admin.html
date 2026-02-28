@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Demo Admin Portal — session-only CRM for the Service Automation Stack template."
+    />
+    <title>Admin Portal (Demo) — Service Automation Stack</title>
+
+    <!-- Optional external font (matches index.html) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main stylesheet (same as index.html) -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- Favicons (same as index.html) -->
+    <link rel="icon" href="assets/images/favicon.ico" />
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/images/favicon.png" />
+
+    <!-- Main JS (same as index.html) -->
+    <script defer src="assets/js/main.js"></script>
+  </head>
+
+  <body>
+    <!-- ============================================================
+      SITE CONFIG
+      - Keep consistent with index.html so branding stays unified.
+      - IMPORTANT: default demo mode endpoint.
+    ============================================================ -->
+    <script>
+      window.SITE_CONFIG = {
+        businessName: "YOUR_BUSINESS_NAME",
+        brandMark: "SB",
+        taglineShort: "Fast • Friendly • Reliable",
+        taglineLong: "Professional service you can trust.",
+
+        phoneDisplay: "(555) 555-5555",
+        phoneE164: "+15555555555",
+        email: "hello@example.com",
+
+        primaryServiceArea: "Your Primary Service Area",
+        serviceRadiusNote: "Approx. service radius: 30–50 miles",
+
+        // Demo by default — no external submissions unless changed by client
+        formEndpoint: "__DEMO__",
+        environment: "demo",
+        source: "github-pages",
+
+        urgencyNote: "Limited weekend availability — reserve early.",
+        hoursText: "Hours: Mon–Sun • 8am–6pm"
+      };
+    </script>
+
+    <!-- MOBILE CALL BAR (same as index.html) -->
+    <div class="mobile-callbar">
+      <a id="mobileCallLink" href="tel:+15555555555">📞 Call Now</a>
+    </div>
+
+    <!-- TOP BAR (same as index.html) -->
+    <div class="topbar" role="banner">
+      <div class="container topbar__inner">
+        <div class="topbar__badge">
+          <span class="dot"></span>
+          <span id="topbarBadgeText">Demo CRM (session-only)</span>
+        </div>
+
+        <div class="topbar__actions">
+          <a class="topbar__link" href="index.html#quote">Quote Form</a>
+          <a class="topbar__link" href="index.html#services">Services</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER / NAV (same style as index.html) -->
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="index.html#top" aria-label="Business home">
+          <div class="brand__mark" aria-hidden="true" id="brandMark">SB</div>
+          <div class="brand__text">
+            <div class="brand__name" id="brandName">YOUR_BUSINESS_NAME</div>
+            <div class="brand__sub" id="brandSub">Service Company</div>
+          </div>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+
+        <nav id="site-nav" class="nav" aria-label="Primary">
+          <a class="nav__link" href="index.html#top">Website</a>
+          <a class="nav__link" href="index.html#quote">Quote Form</a>
+          <a class="nav__link" href="#leads">Leads</a>
+          <a class="nav__link" href="#tools">Tools</a>
+          <a class="btn btn--primary" href="index.html#quote">New Quote</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ============================================================
+        HERO-LIKE HEADER (uses your existing section + container styles)
+      ============================================================ -->
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <p class="kicker">Admin Portal (Demo)</p>
+
+            <h1 class="hero__title">
+              Session-only CRM dashboard.
+              <span class="hero__title-accent">Nothing is stored on a server.</span>
+            </h1>
+
+            <p class="hero__lead">
+              This portal displays leads captured during this browser session.
+              Refreshing or switching browsers will clear the demo CRM data.
+            </p>
+
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#leads">View Leads</a>
+              <a class="btn btn--ghost" href="index.html#quote">Go to Quote Form</a>
+            </div>
+          </div>
+
+          <div class="hero__media">
+            <div class="card card--media">
+              <div class="media-caption">
+                <div class="media-caption__title">Privacy-first demo</div>
+                <div class="media-caption__sub">
+                  Data stays in sessionStorage only (no backend required).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+        LEADS
+      ============================================================ -->
+      <section id="leads" class="section">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="section__title">Leads</h2>
+            <p class="section__sub">
+              These are demo leads stored in your current browser session.
+            </p>
+          </div>
+
+          <div class="grid grid--2">
+            <div class="card">
+              <h3 class="card__title">Snapshot</h3>
+
+              <ul class="checklist" aria-label="Lead stats">
+                <li><strong>Total leads:</strong> <span id="leadCount">0</span></li>
+                <li><strong>Latest:</strong> <span id="latestLead">—</span></li>
+                <li><strong>Storage:</strong> <span>sessionStorage</span></li>
+              </ul>
+
+              <div class="cta-box">
+                <div class="cta-box__title">Quick actions</div>
+                <p class="cta-box__text">
+                  Generate sample entries for demos, or clear all demo leads.
+                </p>
+
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <button class="btn btn--primary" id="btnSeed" type="button">
+                    Generate Sample Leads
+                  </button>
+                  <button class="btn btn--ghost" id="btnClear" type="button">
+                    Clear Demo Leads
+                  </button>
+                </div>
+
+                <small class="fineprint">
+                  Tip: submit the quote form on <code>index.html</code> to add real demo entries.
+                </small>
+              </div>
+
+              <div
+                id="adminSuccess"
+                class="alert alert--success"
+                role="status"
+                aria-live="polite"
+                hidden
+              >
+                <div class="alert__icon">✓</div>
+                <div class="alert__body">
+                  <div class="alert__title">Updated</div>
+                  <div class="alert__msg" id="adminSuccessMsg">Done.</div>
+                </div>
+              </div>
+
+              <div
+                id="adminError"
+                class="alert alert--error"
+                role="status"
+                aria-live="polite"
+                hidden
+              >
+                <div class="alert__icon">!</div>
+                <div class="alert__body">
+                  <div class="alert__title">Something went wrong</div>
+                  <div class="alert__msg" id="adminErrorMsg">Please try again.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 class="card__title">Lead Feed</h3>
+              <p class="card__text">
+                Click a lead to view full details. (This is demo-only data.)
+              </p>
+
+              <div id="leadList" class="stack" aria-label="Lead list">
+                <!-- JS renders cards here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+        TOOLS
+      ============================================================ -->
+      <section id="tools" class="section section--alt">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="section__title">Tools</h2>
+            <p class="section__sub">Export/copy demo data for your sales pitch.</p>
+          </div>
+
+          <div class="grid grid--2">
+            <div class="card">
+              <h3 class="card__title">Copy JSON</h3>
+              <p class="card__text">
+                Copy the entire demo lead list as JSON (great for showing integrations).
+              </p>
+              <button class="btn btn--primary" id="btnCopyJson" type="button">
+                Copy JSON to Clipboard
+              </button>
+              <small class="fineprint">Clipboard permission may be required by the browser.</small>
+            </div>
+
+            <div class="card">
+              <h3 class="card__title">Return to Site</h3>
+              <p class="card__text">
+                Want to create a new demo entry? Use the quote form.
+              </p>
+              <a class="btn btn--ghost" href="index.html#quote">Go to Quote Form</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER (same as index.html) -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__col footer__left">
+          <div class="footer__brand" id="footerBrand">YOUR_BUSINESS_NAME</div>
+          <div class="footer__sub" id="footerSub">Locally Owned & Operated • Your City, ST</div>
+          <div class="footer__meta" id="footerMeta">
+            <span id="footerArea">Your Primary Service Area</span> •
+            <span id="footerRadius">Approx. service radius: 30–50 miles</span>
+          </div>
+        </div>
+
+        <div class="footer__col footer__center">
+          <a class="footer__link" href="privacy.html">Privacy Policy</a>
+        </div>
+
+        <div class="footer__col footer__right">
+          <a class="footer__phone" id="footerPhoneLink" href="tel:+15555555555"
+            ><span id="footerPhoneText">(555) 555-5555</span></a
+          >
+          <a class="footer__email" id="footerEmailLink" href="mailto:hello@example.com"
+            ><span id="footerEmailText">hello@example.com</span></a
+          >
+          <div class="footer__hours" id="footerHours">Hours: Mon–Sun • 8am–6pm</div>
+        </div>
+      </div>
+
+      <div class="container footer__bottom">
+        <small>© <span id="year">2026</span> YOUR_BUSINESS_NAME. All rights reserved.</small>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+      ADMIN SCRIPT (INLINE)
+      - Reads demo leads from sessionStorage
+      - Renders cards using existing styles
+    ============================================================ -->
+    <script>
+      (function () {
+        "use strict";
+
+        // Must match the key used in main.js demo CRM logic
+        const DEMO_KEY = "demo_leads_v1";
+
+        const $ = (sel, root = document) => root.querySelector(sel);
+
+        const els = {
+          count: $("#leadCount"),
+          latest: $("#latestLead"),
+          list: $("#leadList"),
+          btnSeed: $("#btnSeed"),
+          btnClear: $("#btnClear"),
+          btnCopy: $("#btnCopyJson"),
+          ok: $("#adminSuccess"),
+          okMsg: $("#adminSuccessMsg"),
+          err: $("#adminError"),
+          errMsg: $("#adminErrorMsg"),
+        };
+
+        function showOk(msg) {
+          if (els.err) els.err.hidden = true;
+          if (els.okMsg) els.okMsg.textContent = msg || "Done.";
+          if (els.ok) els.ok.hidden = false;
+          els.ok?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function showErr(msg) {
+          if (els.ok) els.ok.hidden = true;
+          if (els.errMsg) els.errMsg.textContent = msg || "Please try again.";
+          if (els.err) els.err.hidden = false;
+          els.err?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function loadLeads() {
+          try {
+            return JSON.parse(sessionStorage.getItem(DEMO_KEY) || "[]");
+          } catch {
+            return [];
+          }
+        }
+
+        function saveLeads(leads) {
+          sessionStorage.setItem(DEMO_KEY, JSON.stringify(leads));
+        }
+
+        function fmtDate(iso) {
+          try {
+            const d = new Date(iso);
+            return d.toLocaleString();
+          } catch {
+            return iso || "";
+          }
+        }
+
+        function escapeHtml(s) {
+          return (s || "").toString()
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+        }
+
+        function render() {
+          const leads = loadLeads();
+          if (els.count) els.count.textContent = String(leads.length);
+
+          if (els.latest) {
+            els.latest.textContent = leads[0]
+              ? `${leads[0].fullName || "Lead"} • ${fmtDate(leads[0].createdAt)}`
+              : "—";
+          }
+
+          if (!els.list) return;
+
+          if (!leads.length) {
+            els.list.innerHTML = `
+              <div class="note">
+                <strong>No leads yet.</strong>
+                Submit the form on <a href="index.html#quote">index.html</a> to create a demo lead.
+              </div>
+            `;
+            return;
+          }
+
+          // Render each lead as a card (reuses your styles)
+          els.list.innerHTML = leads
+            .map((lead) => {
+              const name = escapeHtml(lead.fullName || "New Lead");
+              const tag = escapeHtml(lead.contactTag || "");
+              const created = escapeHtml(fmtDate(lead.createdAt));
+              const phone = escapeHtml((lead.masked && lead.masked.phone) || lead.phone || "");
+              const email = escapeHtml((lead.masked && lead.masked.email) || lead.email || "");
+              const loc = escapeHtml(lead.location || "");
+              const details = escapeHtml(lead.details || "");
+
+              return `
+                <article class="card" style="margin-bottom:12px;">
+                  <h3 class="card__title" style="display:flex; gap:10px; align-items:center; justify-content:space-between;">
+                    <span>${name}</span>
+                    <span class="badge">${escapeHtml(lead.status || "New")}</span>
+                  </h3>
+
+                  <p class="card__text">
+                    <strong>Created:</strong> ${created}<br/>
+                    ${tag ? `<strong>Tag:</strong> ${tag}<br/>` : ""}
+                    ${loc ? `<strong>Location:</strong> ${loc}<br/>` : ""}
+                    ${phone ? `<strong>Phone:</strong> ${phone}<br/>` : ""}
+                    ${email ? `<strong>Email:</strong> ${email}<br/>` : ""}
+                  </p>
+
+                  ${details ? `<div class="note"><strong>Details:</strong> ${details}</div>` : ""}
+
+                  <details>
+                    <summary class="topbar__link" style="cursor:pointer;">View raw JSON</summary>
+                    <pre style="white-space:pre-wrap; margin-top:10px;">${escapeHtml(JSON.stringify(lead, null, 2))}</pre>
+                  </details>
+                </article>
+              `;
+            })
+            .join("");
+        }
+
+        function seedLeads() {
+          const now = Date.now();
+          const samples = [
+            {
+              id: crypto.randomUUID(),
+              createdAt: new Date(now - 1000 * 60 * 12).toISOString(),
+              status: "New",
+              fullName: "Alex Demo",
+              email: "alex@example.com",
+              phone: "(555) 123-9876",
+              location: "Springfield, MA",
+              details: "Garage cleanout — about 1 pickup truck load. Prefer weekend.",
+              contactTag: "springfield_Alex",
+              masked: { email: "al***@example.com", phone: "***-***-9876" }
+            },
+            {
+              id: crypto.randomUUID(),
+              createdAt: new Date(now - 1000 * 60 * 45).toISOString(),
+              status: "New",
+              fullName: "Jordan Sample",
+              email: "jordan@example.com",
+              phone: "(555) 555-1212",
+              location: "Hartford, CT",
+              details: "Move-out help + a few heavy items. 2nd floor stairs.",
+              contactTag: "hartford_Jordan",
+              masked: { email: "jo***@example.com", phone: "***-***-1212" }
+            },
+          ];
+
+          const current = loadLeads();
+          saveLeads([...samples, ...current]);
+          showOk("Sample leads generated.");
+          render();
+        }
+
+        async function copyJson() {
+          try {
+            const leads = loadLeads();
+            const text = JSON.stringify(leads, null, 2);
+            await navigator.clipboard.writeText(text);
+            showOk("Copied demo leads JSON to clipboard.");
+          } catch (e) {
+            showErr("Could not copy to clipboard (browser permission).");
+          }
+        }
+
+        function clearLeads() {
+          sessionStorage.removeItem(DEMO_KEY);
+          showOk("Demo leads cleared.");
+          render();
+        }
+
+        // Wire up buttons
+        els.btnSeed?.addEventListener("click", seedLeads);
+        els.btnClear?.addEventListener("click", clearLeads);
+        els.btnCopy?.addEventListener("click", copyJson);
+
+        // Initial render
+        render();
+      })();
+    </script>
+  </body>
+</html>
